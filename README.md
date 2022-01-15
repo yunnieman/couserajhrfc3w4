@@ -8,9 +8,9 @@ The purpose of this project is to demonstrate your ability to collect, work with
   3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. 
   4) You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.
 
-**To do:**
+## To do:
 
-1. Retrieve dataset from  ["Human Activity Recognition Using Smartphones" data set] (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
+1. Retrieve dataset from ["Human Activity Recognition Using Smartphones" data set](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
 2. Unzip the file.
 3. Move *all* of the following files to the *same directory* as the R script:
 	* `features.txt`
@@ -20,7 +20,7 @@ The purpose of this project is to demonstrate your ability to collect, work with
 	* `X_test.txt`
 	* `y_train.txt`
 	* `y_test.txt`
-4. Install the reshape2 package from (http://cran.r-project.org/web/packages/reshape2/index.html), which can be downloaded from CRAN.
+4. Install [reshape2 package](http://cran.r-project.org/web/packages/reshape2/index.html) from CRAN.
 5. create run_analysis.R
 	+ Merges the training and the test sets to create one data set.
 	+ Extracts only the measurements on the mean and standard deviation for each measurement. 
