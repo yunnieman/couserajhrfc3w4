@@ -1,8 +1,11 @@
+#### 
 ## install.packages("dplyr")
+####
+
 library(dplyr)
 
 ####
-## Downloading the data and preparing the data
+## Downloading and prepping the data
 ####
 
 classdir <- "./data"
@@ -16,7 +19,7 @@ download.file(downloadurl, zipfile)
 if(file.exists(zipfile)) unzip(zipfile)
 
 ####
-## Files are downloaded and the following files exist
+## Review, check, convert
 ####
 
 basedir <- "UCI HAR Dataset"
@@ -41,13 +44,15 @@ pull_files <- c(main_file,
 
 sapply(pull_files, function(f) if(!file.exists(f)) stop(paste("Needed file ", f, " does not exist. Exiting ...", sep="")))
 
+  
+####
 ## Read main working file
+####
+  
 features <- read.table(main_file, col.names=c("rownumber","variablename"))
 
 ####
-
-####
-## Fix the issue with duplicate names (e.g.) 516. fBodyBodyAccJerkMag-mean()
+## Add variablename for later
 ####
 
 allvars <- 
@@ -80,6 +85,11 @@ pulledvars <- mutate(pulledvars, variablename = gsub("-", "", variablename),
 act_labels <- read.table(activitylabelsfile, col.names=c("activity", "description"))
 
 ####
+## Done with Step 1-2
+####
+       
+       
+       
 
 ####
 ## Read in test data files
@@ -108,6 +118,8 @@ combined_test <- cbind(testactivitieswithdescr, testsubjects, testneededvalues)
 ####
 ## Done with test data
 ####
+       
+ 
        
        
 ####
