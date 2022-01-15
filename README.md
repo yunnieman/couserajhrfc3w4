@@ -8,13 +8,11 @@ The purpose of this project is to demonstrate your ability to collect, work with
   3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. 
   4) You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.
 
-##### Link to datasets ["Human Activity Recognition Using Smartphones" data set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones), perform an analysis on the data set, and output a tidy data set.
-
 **To do:**
 
-1. Retrieve dataset from (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
+1. Retrieve dataset from  ["Human Activity Recognition Using Smartphones" data set] (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).
 2. Unzip the file.
-3. Move ALL of the following files to the SAME DIRECTORY as the R script:
+3. Move *all* of the following files to the *same directory* as the R script:
 	* `features.txt`
 	* `subject_train.txt`
 	* `subject_test.txt`
