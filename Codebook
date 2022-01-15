@@ -32,7 +32,10 @@ From [Human Activity Recognition] (http://archive.ics.uci.edu/ml/datasets/Human+
 8. Combine the test data and train data
 9. Make subjects into factors
 10. Write CSV file
-11. View file
+
+### Data files that were not used (as per assignment codebook)
+This analysis was performed using only the files above, and did not use the raw signal data. Therefore, the data files in the "Inertial Signals" folders were ignored.
+
 
 ###
 Done
