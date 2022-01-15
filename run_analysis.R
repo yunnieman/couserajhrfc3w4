@@ -1,9 +1,10 @@
 ## install.packages("dplyr")
 library(dplyr)
 
-#####
+####
 ## Downloading the data and preparing the data
-## Use the directory ".data' as working directory
+####
+
 classdir <- "./data"
 if(!dir.exists("./data")) dir.create("./data")
 setwd(classdir)
@@ -16,7 +17,8 @@ if(file.exists(zipfile)) unzip(zipfile)
 
 ####
 ## Files are downloaded and the following files exist
-##
+####
+
 basedir <- "UCI HAR Dataset"
 main_file <- paste(basedir, "features.txt", sep="/")
 activitylabelsfile <- paste(basedir, "activity_labels.txt", sep="/")
@@ -52,14 +54,13 @@ allvars <-
   mutate(features, variablename = gsub("BodyBody", "Body", variablename))
 
 ####
-## Filter the 66 variables - mean() and std()
+## Filter variables for mean() and std()
 ####
 
 pulledvars <- filter(allvars, grepl("mean\\(\\)|std\\(\\)", variablename))
 
 ####
-## Make the allvariables readable
-##    Remove special characters, Convert to lower case
+## Fix variable names
 ####
 
 allvars <- mutate(allvars, variablename = gsub("-", "", variablename),
@@ -67,25 +68,21 @@ allvars <- mutate(allvars, variablename = gsub("-", "", variablename),
                        variablename = gsub("\\)", "", variablename),
                        variablename = tolower(variablename))
 
-####
-## Make the neededvariables readable
-##    Remove special characters, Convert to lower case
-####
-
 pulledvars <- mutate(pulledvars, variablename = gsub("-", "", variablename),
                           variablename = gsub("\\(", "", variablename),
                           variablename = gsub("\\)", "", variablename),
                           variablename = tolower(variablename))
 
 ####
-## Read activitylabelsfile
+## Pull the activitylabelsfile
+####
 
 act_labels <- read.table(activitylabelsfile, col.names=c("activity", "description"))
 
 ####
 
 ####
-## Read in test data stats
+## Read in test data files
 ####
 
 testvalues <- read.table(testvariablesfile, col.names = allvars$variablename)
@@ -94,17 +91,10 @@ testneededvalues <- testvalues[ , pulledvars$variablename]
 
 testactivities <- read.table(testactivityfile, col.names=c("activity"))
 
-####
-
-####
-## Read in test subjects
-####
-
 testsubjects <- read.table(testsubjectfile, col.names=c("subject"))
-####
 
 ####
-## Add a description
+## Add a description to test
 ####
 
 testactivitieswithdescr <- merge(testactivities, act_labels)
@@ -115,9 +105,13 @@ testactivitieswithdescr <- merge(testactivities, act_labels)
 
 combined_test <- cbind(testactivitieswithdescr, testsubjects, testneededvalues)
 
-
 ####
-## Read in train variables
+## Done with test data
+####
+       
+       
+####
+## Read in train data files
 ####
 
 trainvalues <- read.table(trainvariablesfile, col.names = allvars$variablename)
@@ -128,20 +122,22 @@ trainactivities <- read.table(trainactivityfile, col.names=c("activity"))
 
 trainsubjects <- read.table(trainsubjectfile, col.names=c("subject"))
 
-
 ####
-## Add a description
+## Add a description to train
 ####
 trainactivitieswithdescr <- merge(trainactivities, act_labels)
-####
 
 ####
-## Finish train data
+## Finish with train data
 ####
 
 combined_train <- cbind(trainactivitieswithdescr, trainsubjects, trainneededvalues)
 
-
+####
+## Done with train data
+####
+       
+       
 
 
 ####
@@ -158,8 +154,15 @@ comb_data <- rbind(combined_test, combined_train) %>% select( -activity )
 comb_data <- mutate(comb_data, subject = as.factor(comb_data$subject))
 
 
-write.table(comb_data, "Mean_And_StandardDev.txt")
+####
+## Write tidy final data in CSV
+####
 
 write.csv(comb_data, "tidydata.csv")
 
 View(comb_data)
+
+
+####
+## Time for coffee
+####
